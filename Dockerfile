@@ -1,5 +1,7 @@
 FROM php:7-zts
 
+RUN groupadd -r genisys && useradd -r -g genisys genisys
+
 RUN apt-get update && apt-get install -y libyaml-0-2 --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 RUN buildDeps=" \
@@ -13,4 +15,10 @@ RUN buildDeps=" \
 	&& echo "phar.readonly = off" > /usr/local/etc/php/conf.d/phar.ini \
 	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
-CMD [“php”, “-a”]
+RUN mkdir -p /srv/genisys && chown genisys:genisys /srv/genisys
+
+VOLUME /srv/genisys
+WORKDIR /srv/genisys
+USER genisys
+EXPOSE 19132
+CMD ["php", "/srv/genisys/genisys.phar"]
