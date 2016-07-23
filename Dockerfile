@@ -11,6 +11,7 @@ RUN buildDeps=" \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-install -j`nproc` sockets bcmath mbstring \
 	&& pecl install channel://pecl.php.net/weakref-0.3.2 channel://pecl.php.net/yaml-2.0.0RC7 \
+	&& mkdir -p pthreads \
 	&& curl -fsSL 'https://github.com/krakjoe/pthreads/archive/master.tar.gz' | tar -xzf - -C pthreads --strip-components=1 \
 	&& ( \
 		cd pthreads \
