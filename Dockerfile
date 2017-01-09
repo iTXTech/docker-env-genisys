@@ -1,8 +1,8 @@
-FROM php:7-zts
+FROM php:7.0-zts
 
 RUN groupadd -r genisys && useradd -r -g genisys genisys
 
-RUN apt-get update && apt-get install -y libyaml-0-2 --no-install-recommends && rm -r /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libyaml-0-2 git --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 RUN buildDeps=" \
 		libyaml-dev \
