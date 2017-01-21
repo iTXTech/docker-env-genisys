@@ -1,0 +1,5 @@
+# JetBrains rubbish
+.idea/
+
+# OSX rubbish
+.DS_Store
