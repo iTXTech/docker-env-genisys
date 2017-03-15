@@ -21,4 +21,4 @@ VOLUME /srv/genisys
 WORKDIR /srv/genisys
 USER genisys
 EXPOSE 19132/udp
-CMD ["php", "/srv/genisys/genisys.phar"]
+CMD echo "Thanks for using Docker based installation. This image is now deprecated.\nPlease follow the instructions on https://github.com/iTXTech/Genisys/wiki/Use-Docker-to-run-Genisys to migrate to the new version." && php /srv/genisys/genisys.phar
